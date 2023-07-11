@@ -7,14 +7,18 @@ import {
     UrlTree,
     Router
 } from '@angular/router';
-import {Observable} from 'rxjs';
+import {Observable, catchError, of, tap} from 'rxjs';
 import {AppService} from '@services/app.service';
+import { UserService } from '@services/user.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
-    constructor(private router: Router, private appService: AppService) {}
+    constructor(
+        private router: Router, 
+        private appService: AppService, 
+        private userService: UserService) {}
 
     canActivate(
         next: ActivatedRouteSnapshot,
@@ -24,8 +28,20 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         | Promise<boolean | UrlTree>
         | boolean
         | UrlTree {
-        return this.getProfile();
-    }
+        //return this.getProfile();
+        return this.userService.validateToken()
+            .pipe(
+                tap( isAuthenticated => {
+                    if ( !isAuthenticated ) {
+                        this.router.navigateByUrl('/login');
+                    }
+                }),
+                catchError( error => {
+                    console.log(error);
+                    return of(error);
+                })
+            );
+    };
 
     canActivateChild(
         next: ActivatedRouteSnapshot,
