@@ -3,7 +3,13 @@
 <app-menu-sidebar class="sidebar-dark-primary"></app-menu-sidebar>
 
 <div class="content-wrapper">
-    <router-outlet></router-outlet>
+    <app-breadcrumbs></app-breadcrumbs>
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Aca definimos nuestro contenido -->
+            <router-outlet></router-outlet>
+        </div>
+    </section>    
 </div>
 
 <app-footer></app-footer>

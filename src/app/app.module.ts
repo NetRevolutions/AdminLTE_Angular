@@ -9,6 +9,7 @@ import {LoginComponent} from '@modules/login/login.component';
 import {HeaderComponent} from '@modules/main/header/header.component';
 import {FooterComponent} from '@modules/main/footer/footer.component';
 import {MenuSidebarComponent} from '@modules/main/menu-sidebar/menu-sidebar.component';
+import {BreadcrumbsComponent} from '@modules/main/breadcrumbs/breadcrumbs.component';
 import {BlankComponent} from '@pages/blank/blank.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ProfileComponent} from '@pages/profile/profile.component';
@@ -36,6 +37,7 @@ import {ProfabricComponentsModule} from '@profabric/angular-components';
 import {defineCustomElements} from '@profabric/web-components/loader';
 import {SidebarSearchComponent} from './components/sidebar-search/sidebar-search.component';
 
+
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
 
@@ -47,6 +49,7 @@ registerLocaleData(localeEn, 'en-EN');
         HeaderComponent,
         FooterComponent,
         MenuSidebarComponent,
+        BreadcrumbsComponent,
         BlankComponent,
         ProfileComponent,
         RegisterComponent,

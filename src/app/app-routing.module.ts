@@ -22,23 +22,28 @@ const routes: Routes = [
         children: [
             {
                 path: 'profile',
-                component: ProfileComponent
+                component: ProfileComponent,
+                data: { title: 'Perfil de Usuario'}
             },
             {
                 path: 'blank',
-                component: BlankComponent
+                component: BlankComponent,
+                data: { title: ''}
             },
             {
                 path: 'sub-menu-1',
-                component: SubMenuComponent
+                component: SubMenuComponent,
+                data: { title: 'Sub-menu 1'}
             },
             {
                 path: 'sub-menu-2',
-                component: BlankComponent
+                component: BlankComponent,
+                data: { title: 'Sub-menu 2'}
             },
             {
                 path: '',
-                component: DashboardComponent
+                component: DashboardComponent,
+                data: { title: 'Dashboard'}
             }
         ]
     },
