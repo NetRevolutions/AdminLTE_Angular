@@ -117,7 +117,7 @@
                     </div>
                     <div class="col-sm-4">
                       <div class="input-group mb-3">
-                        <select class="form-control" id="companyType" formControlName="companyType">
+                        <select class="form-control" id="companyType" formControlName="companyType" readonly>
                           <option *ngFor="let item of lcItems" value="{{item.lcValue}}">{{item.lcName}}</option>                        
                         </select>    
                       </div>
@@ -154,7 +154,7 @@
                 </div>
                 <div class="form-group row">
                   <div class="offset-sm-2 col-sm-10">
-                    <button type="submit" class="btn btn-danger">Guardar Cambios</button>
+                    <button type="submit" class="btn btn-danger" [disabled]="this.profileForm.pristine">Guardar Cambios</button>
                   </div>
                 </div>
               </form>

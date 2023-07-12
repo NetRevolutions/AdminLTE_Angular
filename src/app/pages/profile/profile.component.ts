@@ -83,10 +83,10 @@ export class ProfileComponent implements OnInit{
                 this.companyService.getCompanyById(userCompanyData.userCompany.company)
                 .subscribe( (companyData: any) => {
                 if (companyData.ok)
-                this.company = companyData.company;               
+                this.company = companyData.company;
                 this.setValues();
                 this.getRoles();
-                this.disableControls();    
+                //this.disableControls();    
                 });
             }
         });
@@ -95,6 +95,8 @@ export class ProfileComponent implements OnInit{
     updateProfile() {
         this.formSubmitted = true;
         if ( this.profileForm.invalid ) { return; }
+
+        // if ( this.profileForm.pristine) { return; }
         
         //console.log(this.profileForm.value);
         // return; // <== used for tests
@@ -111,7 +113,7 @@ export class ProfileComponent implements OnInit{
                 this.toastr.error( err.error.msg );
             },
             complete: () => {
-                console.info('updae profile complete');
+                console.info('update profile complete');
             }
         });        
     };
@@ -169,9 +171,9 @@ export class ProfileComponent implements OnInit{
         });
     };
 
-    disableControls() {
-        this.profileForm.controls['companyType'].disable();
-    };
+    // disableControls() {
+    //     this.profileForm.controls['companyType'].disable();
+    // };
 
     fieldNoValidate(field: string): boolean {
         if ( this.profileForm.get( field ).invalid && this.formSubmitted ) {

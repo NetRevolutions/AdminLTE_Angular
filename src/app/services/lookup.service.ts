@@ -41,14 +41,14 @@ export class LookupService {
             }
             else {
               let results = [];
-              if ( lcResult.lookupCodes.length > 0 ) {
+              if ( lcResult.lookupCodes.length > 0 ) {                
                 lcResult.lookupCodes.forEach(element => {
                   let item = {} as ILookupCodeReturn;
                   item.lcgId = lcgIDselected;
                   item.lcgName = lcgNameselected;
                   item.lcId = element._id;
                   item.lcName = element.lookupCodeName;
-                  item.lcValue = element.lookuCodeValue;
+                  item.lcValue = element.lookupCodeValue;
                   item.lcOrder = element.lookupCodeOrder;
                   results.push( item );
                 });
