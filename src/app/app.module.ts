@@ -45,6 +45,9 @@ import { LimaCallaoComponent } from './pages/operations/rate-calculation/lima-ca
 import { ProvinceComponent } from '@pages/operations/rate-calculation/province/province.component';
 import { RequestServiceEvaluationComponent } from './pages/operations/request-service-evaluation/request-service-evaluation.component';
 import { ExternalComponent } from './modules/external/external.component';
+import { WorkOrderCreationComponent } from './pages/work-order/work-order-creation/work-order-creation.component';
+import { ControlDocumentsComponent } from './pages/work-order/control-documents/control-documents.component';
+import { WorkOrderStateComponent } from './pages/work-order/work-order-state/work-order-state.component';
 
 
 defineCustomElements();
@@ -77,7 +80,10 @@ registerLocaleData(localeEn, 'en-EN');
         LimaCallaoComponent,
         ProvinceComponent,
         RequestServiceEvaluationComponent,
-        ExternalComponent
+        ExternalComponent,
+        WorkOrderCreationComponent,
+        ControlDocumentsComponent,
+        WorkOrderStateComponent
     ],
     imports: [
         BrowserModule,

@@ -8,8 +8,7 @@ export class MenuService {
   menu: any[] = [
     {
       name: 'Dashboard',
-      iconClassesClasses: 'nav-iconClasses fas fa-tachometer-alt',    
-      // path: ['/'],  
+      iconClassesClasses: 'nav-iconClasses fas fa-tachometer-alt',
       children: [
         { name: 'Home', iconClasses: 'far fa-circle nav-iconClasses', path: ['/']}
       ]
@@ -18,9 +17,9 @@ export class MenuService {
       name: 'Operaciones',
       iconClasses: 'nav-iconClasses fas fa-solid fa-wrench',
       children: [
-        { name: 'Calculo de Tarifas Lima y Callao', iconClasses: 'far fa-circle nav-iconClasses', path: ['/calculo-tarifas/lima-callao']},
-        { name: 'Calculo de Tarifas Provincia', iconClasses: 'far fa-circle nav-iconClasses', path: ['/calculo-tarifas/provincia']},
-        { name: 'Solicitud de Serv. - Evaluacion', iconClasses: 'far fa-circle nav-iconClasses', path: ['/solicitud-servicio-evaluacion']}
+        { name: 'Calculo de Tarifas Lima y Callao', iconClasses: 'far fa-circle nav-iconClasses', path: ['/operaciones/calculo-tarifas/lima-callao']},
+        { name: 'Calculo de Tarifas Provincia', iconClasses: 'far fa-circle nav-iconClasses', path: ['/operaciones/calculo-tarifas/provincia']},
+        { name: 'Solicitud de Serv. - Evaluacion', iconClasses: 'far fa-circle nav-iconClasses', path: ['/operaciones/solicitud-servicio-evaluacion']}
       ]
     },
     {

@@ -43,27 +43,30 @@ const routes: Routes = [
                 component: BlankComponent,
                 data: { title: 'Sub-menu 2'}
             },
-            // {
-            //     path: 'calculo-tarifas',
-            //     canActivate: [NonAuthGuard],
-            //     canActivateChild: [NonAuthGuard],        
-            //     children: [
-            //         {
-            //             path: 'lima-callao',
-            //             component: LimaCallaoComponent,
-            //             data: { title: 'Calculo de Tarifas - Lima y Callao'}           
-            //         },
-            //         {
-            //             path: 'provincia',
-            //             component: ProvinceComponent,
-            //             data: { title: 'Calculo de Tarifas - Provincia'}
-            //         }
-            //     ]
-            // },
             {
-                path: 'solicitud-servicio-evaluacion',
-                component: RequestServiceEvaluationComponent,
-                data: { title: 'Solicitud de Servicio - Evaluacion'}
+                path: 'operaciones',
+                children: [
+                    {
+                        path: 'calculo-tarifas',                    
+                        children: [
+                            {
+                                path: 'lima-callao',
+                                component: LimaCallaoComponent,
+                                data: { title: 'Calculo de Tarifas - Lima y Callao'}           
+                            },
+                            {
+                                path: 'provincia',
+                                component: ProvinceComponent,
+                                data: { title: 'Calculo de Tarifas - Provincia'}
+                            }
+                        ]
+                    },
+                    {
+                        path: 'solicitud-servicio-evaluacion',
+                        component: RequestServiceEvaluationComponent,
+                        data: { title: 'Solicitud de Servicio - Evaluacion'}
+                    }
+                ]
             },
             {
                 path: '',
@@ -73,20 +76,25 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'calculo-tarifas',
-        component: MainComponent,
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
+        path: 'external',
+        component: MainComponent, // Crear un componente external (como MainComponent) que no requiera autenticacion
+        canActivate: [NonAuthGuard],
+        canActivateChild: [NonAuthGuard],
         children: [
             {
-                path: 'lima-callao',
-                component: LimaCallaoComponent,
-                data: { title: 'Calculo de Tarifas - Lima y Callao'}           
-            },
-            {
-                path: 'provincia',
-                component: ProvinceComponent,
-                data: { title: 'Calculo de Tarifas - Provincia'}
+                path: 'calculo-tarifas',
+                children: [
+                    {
+                        path: 'lima-callao',
+                        component: LimaCallaoComponent,
+                        data: { title: 'Calculo de Tarifas - Lima y Callao'}           
+                    },
+                    {
+                        path: 'provincia',
+                        component: ProvinceComponent,
+                        data: { title: 'Calculo de Tarifas - Provincia'}
+                    }
+                ]
             }
         ]
     },    
