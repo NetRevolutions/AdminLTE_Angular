@@ -1,8 +1,22 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
-
 import {AppRoutingModule} from '@/app-routing.module';
+import {ReactiveFormsModule} from '@angular/forms';
+import {StoreModule} from '@ngrx/store';
+import {ToastrModule} from 'ngx-toastr';
+import {ProfabricComponentsModule} from '@profabric/angular-components';
+
+import {registerLocaleData} from '@angular/common';
+import localeEn from '@angular/common/locales/en';
+import {authReducer} from './store/auth/reducer';
+import {uiReducer} from './store/ui/reducer';
+import {defineCustomElements} from '@profabric/web-components/loader';
+
+// Modules
+
+// Components
 import {AppComponent} from './app.component';
 import {MainComponent} from '@modules/main/main.component';
 import {LoginComponent} from '@modules/login/login.component';
@@ -11,17 +25,11 @@ import {FooterComponent} from '@modules/main/footer/footer.component';
 import {MenuSidebarComponent} from '@modules/main/menu-sidebar/menu-sidebar.component';
 import {BreadcrumbsComponent} from '@modules/main/breadcrumbs/breadcrumbs.component';
 import {BlankComponent} from '@pages/blank/blank.component';
-import {ReactiveFormsModule} from '@angular/forms';
 import {ProfileComponent} from '@pages/profile/profile.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RegisterComponent} from '@modules/register/register.component';
 import {DashboardComponent} from '@pages/dashboard/dashboard.component';
-import {ToastrModule} from 'ngx-toastr';
 import {MessagesComponent} from '@modules/main/header/messages/messages.component';
 import {NotificationsComponent} from '@modules/main/header/notifications/notifications.component';
-
-import {registerLocaleData} from '@angular/common';
-import localeEn from '@angular/common/locales/en';
 import {UserComponent} from '@modules/main/header/user/user.component';
 import {ForgotPasswordComponent} from '@modules/forgot-password/forgot-password.component';
 import {RecoverPasswordComponent} from '@modules/recover-password/recover-password.component';
@@ -30,12 +38,13 @@ import {MainMenuComponent} from './pages/main-menu/main-menu.component';
 import {SubMenuComponent} from './pages/main-menu/sub-menu/sub-menu.component';
 import {MenuItemComponent} from './components/menu-item/menu-item.component';
 import {ControlSidebarComponent} from './modules/main/control-sidebar/control-sidebar.component';
-import {StoreModule} from '@ngrx/store';
-import {authReducer} from './store/auth/reducer';
-import {uiReducer} from './store/ui/reducer';
-import {ProfabricComponentsModule} from '@profabric/angular-components';
-import {defineCustomElements} from '@profabric/web-components/loader';
 import {SidebarSearchComponent} from './components/sidebar-search/sidebar-search.component';
+
+// Operations
+import { LimaCallaoComponent } from './pages/operations/rate-calculation/lima-callao/lima-callao.component';
+import { ProvinceComponent } from '@pages/operations/rate-calculation/province/province.component';
+import { RequestServiceEvaluationComponent } from './pages/operations/request-service-evaluation/request-service-evaluation.component';
+import { ExternalComponent } from './modules/external/external.component';
 
 
 defineCustomElements();
@@ -64,7 +73,11 @@ registerLocaleData(localeEn, 'en-EN');
         SubMenuComponent,
         MenuItemComponent,
         ControlSidebarComponent,
-        SidebarSearchComponent
+        SidebarSearchComponent,
+        LimaCallaoComponent,
+        ProvinceComponent,
+        RequestServiceEvaluationComponent,
+        ExternalComponent
     ],
     imports: [
         BrowserModule,

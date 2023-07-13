@@ -5,8 +5,18 @@
             <div class="card-body box-profile">
                 <div class="text-center">
                     <pf-image
+                        *ngIf="!imgTemp"
                         class="user-img"
                         [src]="user.imageUrl"
+                        alt="User profile picture"
+                        width="100"
+                        height="100"
+                        rounded
+                    ></pf-image>
+                    <pf-image
+                        *ngIf="imgTemp"
+                        class="user-img"
+                        [src]="imgTemp"
                         alt="User profile picture"
                         width="100"
                         height="100"
@@ -18,7 +28,7 @@
                     <br>
                     <button type="button" 
                             class="btn btn-success btn-block waves-effect waves-light m-r-10"
-                            [disabled]="!uploadImage"
+                            [disabled]="(!uploadImage)"
                             (click)="loadImage()">
                     <i class="fa fa-save"></i>
                     Cambiar imagen
