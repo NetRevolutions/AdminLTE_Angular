@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit{
     public profileForm: FormGroup;
     public user: User;
     public company: Company;
-    public uploadImage: File;
+    public uploadImage: File = undefined;
     public imgTemp: any = '';
     public formSubmitted = false;
 
@@ -85,8 +85,7 @@ export class ProfileComponent implements OnInit{
                 if (companyData.ok)
                 this.company = companyData.company;
                 this.setValues();
-                this.getRoles();
-                //this.disableControls();    
+                this.getRoles();                 
                 });
             }
         });
@@ -199,7 +198,7 @@ export class ProfileComponent implements OnInit{
         this.fileUploadService
         .updatePhoto(this.uploadImage, 'users', this.user.uid)
         .then( img => {
-            this.user.imagePath = img;
+            this.user.imagePath = img;            
             this.toastr.success('Imagen actualizada con exito!');
         })
         .catch( err => {

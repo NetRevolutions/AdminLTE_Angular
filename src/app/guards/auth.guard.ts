@@ -54,16 +54,16 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         return this.canActivate(next, state);
     }
 
-    async getProfile() {
-        if (this.appService.user) {
-            return true;
-        }
+    // async getProfile() {
+    //     if (this.appService.user) {
+    //         return true;
+    //     }
 
-        try {
-            await this.appService.getProfile();
-            return true;
-        } catch (error) {
-            return false;
-        }
-    }
+    //     try {
+    //         await this.appService.getProfile();
+    //         return true;
+    //     } catch (error) {
+    //         return false;
+    //     }
+    // }
 }

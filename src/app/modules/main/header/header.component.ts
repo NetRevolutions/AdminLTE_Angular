@@ -1,11 +1,14 @@
-import {AppState} from '@/store/state';
-import {ToggleControlSidebar, ToggleSidebarMenu} from '@/store/ui/actions';
-import {UiState} from '@/store/ui/state';
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {UntypedFormGroup, UntypedFormControl} from '@angular/forms';
+
+import {AppState} from '@/store/state';
 import {Store} from '@ngrx/store';
-import {AppService} from '@services/app.service';
+import {ToggleControlSidebar, ToggleSidebarMenu} from '@/store/ui/actions';
+import {UiState} from '@/store/ui/state';
 import {Observable} from 'rxjs';
+
+// Services
+import { UserService } from '@services/user.service';
 
 const BASE_CLASSES = 'main-header navbar navbar-expand';
 @Component({
@@ -18,8 +21,8 @@ export class HeaderComponent implements OnInit {
     public ui: Observable<UiState>;
     public searchForm: UntypedFormGroup;
 
-    constructor(
-        private appService: AppService,
+    constructor(        
+        private userService: UserService,
         private store: Store<AppState>
     ) {}
 
@@ -31,10 +34,12 @@ export class HeaderComponent implements OnInit {
         this.searchForm = new UntypedFormGroup({
             search: new UntypedFormControl(null)
         });
+
+        this.hasToken();
     }
 
     logout() {
-        this.appService.logout();
+        this.userService.logout();
     }
 
     onToggleMenuSidebar() {
@@ -43,5 +48,11 @@ export class HeaderComponent implements OnInit {
 
     onToggleControlSidebar() {
         this.store.dispatch(new ToggleControlSidebar());
+    }
+
+    hasToken() {
+        console.log('hasToken', localStorage.getItem('token') ? true : false);
+        return localStorage.getItem('token') ? true : false;
+        
     }
 }

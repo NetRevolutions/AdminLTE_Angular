@@ -23,9 +23,15 @@
                 height="90"
                 rounded
             ></pf-image>
-
             <p>
-                <span>{{ user.email }}</span>
+                <span>
+                    {{ user.fullName | slice:0:20}}
+                    {{ (user.fullName.length > 20) ? '...' : ''}}
+                </span>                
+                <span>
+                    {{ user.email | slice:0:20}}
+                    {{ (user.email.length > 26) ? '...' : ''}}                    
+                </span>
                 <small>
                     <span class="mr-2">Member since</span>
                     <span>{{ formatDate(user.createdUtc) }}</span>
@@ -33,7 +39,7 @@
             </p>
         </li>
         <!-- Menu Body -->
-        <li class="user-body">
+        <!-- <li class="user-body">
             <div class="row">
                 <div class="col-4 text-center">
                     <a [routerLink]="['/']">Followers</a>
@@ -44,9 +50,8 @@
                 <div class="col-4 text-center">
                     <a [routerLink]="['/']">Friends</a>
                 </div>
-            </div>
-            <!-- /.row -->
-        </li>
+            </div>            
+        </li> -->
         <!-- Menu Footer-->
         <li class="user-footer">
             <a [routerLink]="['/profile']" class="btn btn-default btn-flat">

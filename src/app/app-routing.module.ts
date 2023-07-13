@@ -12,6 +12,9 @@ import {ForgotPasswordComponent} from '@modules/forgot-password/forgot-password.
 import {RecoverPasswordComponent} from '@modules/recover-password/recover-password.component';
 import {MainMenuComponent} from '@pages/main-menu/main-menu.component';
 import {SubMenuComponent} from '@pages/main-menu/sub-menu/sub-menu.component';
+import { LimaCallaoComponent } from '@pages/operations/rate-calculation/lima-callao/lima-callao.component';
+import { ProvinceComponent } from '@pages/operations/rate-calculation/province/province.component';
+import { RequestServiceEvaluationComponent } from '@pages/operations/request-service-evaluation/request-service-evaluation.component';
 
 const routes: Routes = [
     {
@@ -40,6 +43,28 @@ const routes: Routes = [
                 component: BlankComponent,
                 data: { title: 'Sub-menu 2'}
             },
+            // {
+            //     path: 'calculo-tarifas',
+            //     canActivate: [NonAuthGuard],
+            //     canActivateChild: [NonAuthGuard],        
+            //     children: [
+            //         {
+            //             path: 'lima-callao',
+            //             component: LimaCallaoComponent,
+            //             data: { title: 'Calculo de Tarifas - Lima y Callao'}           
+            //         },
+            //         {
+            //             path: 'provincia',
+            //             component: ProvinceComponent,
+            //             data: { title: 'Calculo de Tarifas - Provincia'}
+            //         }
+            //     ]
+            // },
+            {
+                path: 'solicitud-servicio-evaluacion',
+                component: RequestServiceEvaluationComponent,
+                data: { title: 'Solicitud de Servicio - Evaluacion'}
+            },
             {
                 path: '',
                 component: DashboardComponent,
@@ -47,6 +72,24 @@ const routes: Routes = [
             }
         ]
     },
+    {
+        path: 'calculo-tarifas',
+        component: MainComponent,
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        children: [
+            {
+                path: 'lima-callao',
+                component: LimaCallaoComponent,
+                data: { title: 'Calculo de Tarifas - Lima y Callao'}           
+            },
+            {
+                path: 'provincia',
+                component: ProvinceComponent,
+                data: { title: 'Calculo de Tarifas - Provincia'}
+            }
+        ]
+    },    
     {
         path: 'login',
         component: LoginComponent,

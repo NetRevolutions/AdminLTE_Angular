@@ -20,7 +20,7 @@ export class MenuService {
       children: [
         { name: 'Calculo de Tarifas Lima y Callao', iconClasses: 'far fa-circle nav-iconClasses', path: ['/calculo-tarifas/lima-callao']},
         { name: 'Calculo de Tarifas Provincia', iconClasses: 'far fa-circle nav-iconClasses', path: ['/calculo-tarifas/provincia']},
-        { name: 'Solicitud de Serv. - Evaluacion', iconClasses: 'far fa-circle nav-iconClasses', path: ['/dashboard']}
+        { name: 'Solicitud de Serv. - Evaluacion', iconClasses: 'far fa-circle nav-iconClasses', path: ['/solicitud-servicio-evaluacion']}
       ]
     },
     {

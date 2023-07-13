@@ -73,6 +73,7 @@ export class UserService {
   logout() {
     this.user = null;
     localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   };
 
   getUserCompany() {

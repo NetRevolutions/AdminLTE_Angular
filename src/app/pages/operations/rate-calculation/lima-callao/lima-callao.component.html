@@ -1,0 +1,245 @@
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">
+            <!-- Calculo de Tarifas para Lima y Callao -->
+        </h3>
+    </div>
+    <form class="form-horizontal">        
+        <div class="card-body">   
+            <h5>Datos del Solicitante</h5>         
+            <div class="form-group row">
+                <label for="nombres" class="col-sm-2 col-form-label">Nombres</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="nombres" placeholder="nombres">
+                </div>
+                <label for="apellidos" class="col-sm-2 col-form-label">Apellidos</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="apellidos" placeholder="Apellidos">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="correo" class="col-sm-2 col-form-label">Correo de Contacto</label>
+                <div class="col-sm-4">
+                    <input type="email" class="form-control" id="correo" placeholder="correo">
+                </div>
+                <label for="celular" class="col-sm-2 col-form-label">Celular</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="celular" placeholder="celular">
+                </div>
+            </div>   
+            <div class="form-group row">
+                <label for="ruc" class="col-sm-2 col-form-label">Ruc</label>
+                <div class="input-group input-group-sm col-sm-4">
+                    <input type="text" class="form-control" id="ruc">
+                    <span class="input-group-append">
+                        <button type="button" class="btn btn-info btn-flat" style="height:fit-content">Buscar</button>
+                    </span>
+                    </div>
+                <label for="empresa" class="col-sm-2 col-form-label">Empresa</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="empresa" placeholder="empresa" disabled>
+                </div>
+            </div>
+            <hr>
+            <h5>Calculo del Flete</h5>
+            <div class="form-group row">
+                <label for="tipoServicio" class="col-sm-2 col-form-label">Tipo de Servicio</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="tipoServicio" id="tipoServicio">
+                        <option value="">-- Seleccione --</option>
+                        <option value="IMPO">Importacion</option>
+                        <option value="EXPO">Exportacion</option>
+                        <option value="CS">Carga Suelta</option>
+                        <option value="CSF">Carga Suelta Furgon</option>
+                        <option value="CB">Cama Baja</option>
+                        <option value="CC">Cama Cuna</option>
+                        <option value="TRX">Tracciones</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="fechaServicio" class="col-sm-2 col-form-label">Fecha del Servicio</label>
+                <div class="col-sm-4">
+                    <input type="date" class="form-control" id="fechaServicio" name="fechaServicio">
+                    <!-- <div class="input-group date" id="fechaServicio" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#fechaServicio">
+                        <div class="input-group-append" data-target="#fechaServicio" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div> -->
+                </div>
+                <label for="tamanioContenedor" class="col-sm-2 col-form-label">Tamaño de Cont.</label>
+                <div class="col-sm-2">
+                    <select class="form-control" name="tamanioContenedor" id="tamanioContenedor">
+                        <option value="">-- Seleccione --</option>
+                        <option value="CTN20">20 Pies</option>
+                        <option value="CTN40">40 Pies</option>                        
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input" type="checkbox" id="chbxUsar40" checked="">
+                    <label for="chbxUsar40" class="custom-control-label"><small>Puede ir en Plataforma de 40 Pies</small></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="puntoA" class="col-sm-2 col-form-label">Origen</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="puntoA" id="puntoA">
+                        <option value="">-- Seleccione --</option>
+                        <option value="Callao">Callao</option>
+                        <option value="LaPerla">La Perla</option>
+                        <option value="Bellavista">Bellavista</option>
+                        <option value="LaPunta">La Punta</option>
+                        <option value="Ventanilla">Ventanilla</option>
+                        <option value="Puente Piedra">Puente Piedra</option>
+                        <option value="Ate">Ate</option>
+                        <option value="Huachipa">Huachipa</option>
+                        <option value="SanLuis">San Luis</option>
+                        <option value="LaVictoria">La Victoria</option>
+                        <option value="Chorrillos">Chorrillos</option>
+                        <option value="Lurin">Lurin</option>
+                    </select>
+                </div>
+                <label for="puntoB" class="col-sm-2 col-form-label">Destino</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="puntoB" id="puntoB">
+                        <option value="">-- Seleccione --</option>
+                        <option value="Callao">Callao</option>
+                        <option value="LaPerla">La Perla</option>
+                        <option value="Bellavista">Bellavista</option>
+                        <option value="LaPunta">La Punta</option>
+                        <option value="Ventanilla">Ventanilla</option>
+                        <option value="Puente Piedra">Puente Piedra</option>
+                        <option value="Ate">Ate</option>
+                        <option value="Huachipa">Huachipa</option>
+                        <option value="SanLuis">San Luis</option>
+                        <option value="LaVictoria">La Victoria</option>
+                        <option value="Chorrillos">Chorrillos</option>
+                        <option value="Lurin">Lurin</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="ReferenciaPuntoA" class="col-sm-2 col-form-label">Referencia</label>
+                <div class="col-sm-4">
+                    <textarea name="ReferenciaPuntoA" id="ReferenciaPuntoA" cols="57" rows="3"></textarea>                    
+                </div>
+                <label for="ReferenciaPuntoB" class="col-sm-2 col-form-label">Referencia</label>
+                <div class="col-sm-4">
+                    <textarea name="ReferenciaPuntoB" id="ReferenciaPuntoB" cols="57" rows="3"></textarea>                    
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="puntoC" class="col-sm-2 col-form-label">Lugar de Devolucion</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="puntoC" id="puntoC">
+                        <option value="">-- Seleccione --</option>
+                        <option value="Callao">Callao</option>
+                        <option value="LaPerla">La Perla</option>
+                        <option value="Bellavista">Bellavista</option>
+                        <option value="LaPunta">La Punta</option>
+                        <option value="Ventanilla">Ventanilla</option>
+                        <option value="Puente Piedra">Puente Piedra</option>
+                        <option value="Ate">Ate</option>
+                        <option value="Huachipa">Huachipa</option>
+                        <option value="SanLuis">San Luis</option>
+                        <option value="LaVictoria">La Victoria</option>
+                        <option value="Chorrillos">Chorrillos</option>
+                        <option value="Lurin">Lurin</option>
+                    </select>
+                </div>
+                <label for="requiereCuadrilla" class="col-sm-2 col-form-label">Requiere Cuadrilla</label>
+                <div class="col-sm-2">
+                    <select class="form-control" name="requiereCuadrilla" id="requiereCuadrilla">
+                        <option value="">-- Seleccione --</option>
+                        <option value="SIRCuadrilla">SI</option>
+                        <option value="NORCuadrilla">NO</option>                        
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="ReferenciaPuntoC" class="col-sm-2 col-form-label">Referencia</label>
+                <div class="col-sm-4">
+                    <textarea name="ReferenciaPuntoA" id="ReferenciaPuntoC" cols="57" rows="3"></textarea>                    
+                </div>
+                <label for="requiereCustodia" class="col-sm-2 col-form-label">Requiere Custodia</label>
+                <div class="col-sm-2">
+                    <select class="form-control" name="requiereCustodia" id="requiereCustodia">
+                        <option value="">-- Seleccione --</option>
+                        <option value="SIRCustodia">SI</option>
+                        <option value="NORCustodia">NO</option>                        
+                    </select>
+                </div>
+            </div>                            
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer text-center">
+          <button type="submit" class="btn btn-primary mr-2">
+            <i class="fa fa-wrench"></i> Calcular Flete</button>
+          <button type="submit" class="btn btn-danger">
+            <i class="fa fa-eraser"></i> Limpiar Datos</button>
+        </div>
+        <!-- /.card-footer -->
+        <div class="card-body" id="results" name="results">
+            <h5>Resultados del Calculo</h5>
+            <div class="form-group row">
+                <span class="col-sm-2">Tipo de Servicio:</span>
+                <span class="col-sm-4" id="rTipoServicioValue" >Importacion</span>
+            </div>
+            <div class="form-group row">
+                <span class="col-sm-2">Fecha del Servicio:</span>
+                <span class="col-sm-4" id="rFechaServicioValue">20-01-2023</span>
+            </div>
+            <div class="form-group row">
+                <span class="col-sm-2">Tamaño de Cont.:</span>
+                <span class="col-sm-4" id="rTamanioContenedorValue">40</span>
+            </div>
+            <div class="form-group row">
+                <span class="col-sm-2">Origen:</span>
+                <span class="col-sm-4" id="rPuntoAValue">Callao - DPW Callao, Av. Manco Capac 113 - Callao</span>
+            </div>
+            <div class="form-group row">
+                <span class="col-sm-2">Destino:</span>
+                <span class="col-sm-4" id="rPuntoBValue">Lurin - Altura del Puente San Pedro</span>
+            </div>
+            <div class="form-group row">
+                <span class="col-sm-2">Lugar de Devol.:</span>                
+                <span class="col-sm-4" id="rPuntoCValue">DPWL Gambeta 1</span>
+            </div>
+            <div class="form-group row">
+                <span class="col-sm-2">Flete:</span>
+                <span class="col-sm-4 font-weight-bold" id="rFleteValue">S/.950 (negociable)(*)</span>
+            </div>
+            <div class="form-group row">
+                <span class="col-sm-2">Requiere Cuadrilla:</span>
+                <span class="col-sm-4" id="rRequiereCuadrillaValue">No (**)</span>
+            </div>
+            <div class="form-group row">
+                <span class="col-sm-2">Requiere Custodia:</span>
+                <span class="col-sm-4" id="rRequiereCustodiaValue">No (**)</span>
+            </div>
+            <div class="form-group-row">
+                <span class="col-sm-6 font-italic"><small><b>(*) El flete no incluye el IGV</b></small></span>
+            </div>
+            <div class="form-group-row">
+                <span class="col-sm-6 font-italic"><small><b>(**) Los precios de cuadrilla y custodia seran adicionales al flete</b></small></span>
+            </div>
+            <div class="form-group">
+                <label for="rComments">Comentarios y/o Observaciones adicionales</label>
+                <textarea class="form-control" name="rComments" id="rComments" cols="10" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input" type="checkbox" id="chbxAgree" checked="">
+                    <label for="chbxAgree" class="custom-control-label">Los datos ingresados son reales para ser contactado por un representante</label>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary mr-2" id="requestService">
+                    <i class="fa fa-envelope"></i> Solicitar Servicio</button>
+            </div>
+        </div>
+    </form>  
+</div>
