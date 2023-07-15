@@ -15,12 +15,9 @@
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
       "prettier --write"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged && ng lint && lint-staged"
-    }
+    ],
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   },
   "dependencies": {
     "@angular/animations": "^15.0.1",
