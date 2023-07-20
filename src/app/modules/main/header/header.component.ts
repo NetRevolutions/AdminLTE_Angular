@@ -34,8 +34,6 @@ export class HeaderComponent implements OnInit {
         this.searchForm = new UntypedFormGroup({
             search: new UntypedFormControl(null)
         });
-
-        // this.hasToken();
     }
 
     logout() {
@@ -49,8 +47,4 @@ export class HeaderComponent implements OnInit {
     onToggleControlSidebar() {
         this.store.dispatch(new ToggleControlSidebar());
     }
-
-    // hasToken() {
-    //     return localStorage.getItem('token') ? true : false;
-    // }
 }

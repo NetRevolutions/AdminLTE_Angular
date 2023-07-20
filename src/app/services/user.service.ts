@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, catchError, map, of, tap} from 'rxjs';
+import {Observable, catchError, delay, map, of, tap} from 'rxjs';
 import {environment} from 'environments/environment';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
@@ -76,7 +76,9 @@ export class UserService {
                     localStorage.setItem('token', resp.token);
                     return true;
                 }),
-                catchError((error) => of(false))
+                catchError((error) => {
+                    return of(false);
+                })
             );
     }
 
@@ -123,6 +125,7 @@ export class UserService {
         // http://localhost:3000/api/users?from=0
         const url = `${base_url}/users?from=${from}`;
         return this.http.get(url, this.headers).pipe(
+            //delay(5000),
             map((resp: any) => {
                 const users = resp.users.map(
                     (user) =>
