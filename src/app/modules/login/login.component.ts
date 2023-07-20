@@ -56,8 +56,8 @@ export class LoginComponent implements OnInit, OnDestroy {
                     password: this.loginForm.value['password'],
                     remember: this.loginForm.value['remember']
                 })
-                .subscribe(
-                    (resp) => {
+                .subscribe({
+                    next: (resp) => {
                         if (this.loginForm.get('remember').value) {
                             localStorage.setItem(
                                 'email',
@@ -66,15 +66,39 @@ export class LoginComponent implements OnInit, OnDestroy {
                         } else {
                             localStorage.removeItem('email');
                         }
+
                         this.isAuthLoading = false;
-                        this.router.navigateByUrl('/');
                         this.toastr.success('Login success');
+                        this.router.navigateByUrl('/');
                     },
-                    (err) => {
-                        console.log('error', err);
-                        this.toastr.error('Se produjo un error en el login');
+                    error: (err) => {
+                        //console.log('error', err);
+                        this.toastr.error(err.error.msg);
+                        this.isAuthLoading = false;
+                    },
+                    complete: () => {
+                        console.info('inicio de sesion');
                     }
-                );
+                });
+            // .subscribe(
+            //     (resp) => {
+            //         if (this.loginForm.get('remember').value) {
+            //             localStorage.setItem(
+            //                 'email',
+            //                 this.loginForm.get('email').value
+            //             );
+            //         } else {
+            //             localStorage.removeItem('email');
+            //         }
+            //         this.isAuthLoading = false;
+            //         this.router.navigateByUrl('/');
+            //         this.toastr.success('Login success');
+            //     },
+            //     (err) => {
+            //         console.log('error', err);
+            //         this.toastr.error('Se produjo un error en el login');
+            //     }
+            // );
         } else {
             this.toastr.error('Form is not valid!');
         }
