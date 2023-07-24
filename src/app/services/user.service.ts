@@ -88,7 +88,7 @@ export class UserService {
 
     createUserCompany(user: string, company: string) {
         return this.http.post(`${base_url}/userCompany`, {user, company});
-        // Nota: En este medoto el token lo estoy seteando en el localstorage en los metodos mas arriba porque hacen otras tareas.
+        // Nota: En este metodo el token lo estoy seteando en el localstorage en los metodos mas arriba porque hacen otras tareas.
     }
 
     updateUserProfile(formData: IUserProfileUpdate) {
@@ -122,7 +122,6 @@ export class UserService {
     }
 
     getUsers(from: number = 0) {
-        // http://localhost:3000/api/users?from=0
         const url = `${base_url}/users?from=${from}`;
         return this.http.get(url, this.headers).pipe(
             //delay(5000),

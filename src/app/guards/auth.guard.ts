@@ -28,6 +28,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
             tap({
                 next: (isAuthenticated) => {
                     if (!isAuthenticated) {
+                        localStorage.removeItem('token');
                         this.router.navigateByUrl('/login');
                         return of(false);
                     }

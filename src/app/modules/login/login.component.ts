@@ -80,25 +80,6 @@ export class LoginComponent implements OnInit, OnDestroy {
                         console.info('inicio de sesion');
                     }
                 });
-            // .subscribe(
-            //     (resp) => {
-            //         if (this.loginForm.get('remember').value) {
-            //             localStorage.setItem(
-            //                 'email',
-            //                 this.loginForm.get('email').value
-            //             );
-            //         } else {
-            //             localStorage.removeItem('email');
-            //         }
-            //         this.isAuthLoading = false;
-            //         this.router.navigateByUrl('/');
-            //         this.toastr.success('Login success');
-            //     },
-            //     (err) => {
-            //         console.log('error', err);
-            //         this.toastr.error('Se produjo un error en el login');
-            //     }
-            // );
         } else {
             this.toastr.error('Form is not valid!');
         }
