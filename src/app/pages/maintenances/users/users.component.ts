@@ -2,11 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 
 // Models
-import {Role} from '@/models/role.models';
 import {User} from '@/models/user.model';
 
 // Services
-import {RoleService} from '@services/role.service';
 import {UserService} from '@services/user.service';
 import {SearchesService} from '@services/searches.service';
 import {enumModel} from '@/utils/models.enum';
@@ -25,7 +23,6 @@ export class UsersComponent implements OnInit {
 
     constructor(
         private userService: UserService,
-        private roleService: RoleService,
         private searchesService: SearchesService,
         private toastr: ToastrService
     ) {}
@@ -35,47 +32,22 @@ export class UsersComponent implements OnInit {
     }
 
     loadUsers() {
-        // TODO: Destructurarlo en metodos asincronos para poder reutilizar las funciones
-        this.loading = true;
-        this.roleService.getRoles().subscribe({
-            next: (rolesData: any) => {
-                this.userService.getUsers(this.from).subscribe({
-                    next: (usersData: any) => {
-                        if (usersData.ok) {
-                            // Transformamos los userRoles - Begin
-                            usersData.users.forEach((item) => {
-                                let rolesTemp = [];
-                                let itemRoles: [Role] = item.roles;
-                                itemRoles.forEach((itemRole) => {
-                                    let roleId = itemRole;
-                                    let roleName = rolesData.roles.find(
-                                        (r) => r._id == itemRole
-                                    ).roleName;
-                                    rolesTemp.push({roleId, roleName});
-                                });
-                                item.roles = rolesTemp;
-                            });
-                            // Transformamos los userRoles - End
-                            this.totalUsers = usersData.total;
-                            this.users = usersData.users;
-                            this.usersTemp = usersData.users;
+        this.userService.getUsers(this.from).subscribe({
+            next: (usersData: any) => {
+                if (usersData.ok) {
+                    this.totalUsers = usersData.total;
+                    this.users = usersData.users;
+                    this.usersTemp = usersData.users;
 
-                            this.loading = false;
-                            //console.log(this.users);
-                        }
-                    },
-                    error: (err) => {
-                        this.loading = false;
-                        this.toastr.error(
-                            'Se produjo un error al traer los Datos de los usuarios'
-                        );
-                        console.error(err.error.msg);
-                    }
-                });
+                    this.loading = false;
+                    //console.log(this.users);
+                }
             },
             error: (err) => {
                 this.loading = false;
-                this.toastr.error('Se produjo un error al traer los roles');
+                this.toastr.error(
+                    'Se produjo un error al traer los Datos de los usuarios'
+                );
                 console.error(err.error.msg);
             }
         });
@@ -100,7 +72,7 @@ export class UsersComponent implements OnInit {
 
         this.searchesService.search(enumModel.USER, term).subscribe({
             next: (results) => {
-                this.users = results; // TODO: Mejorar la parte para traer los roles.
+                this.users = results;
             },
             error: (err) => {
                 this.toastr.error('Se produjo un error al buscar datos');
