@@ -11,20 +11,17 @@
         </div>
     </div>
 </div>
-<div *ngIf="loading" class="row animate__animated__fadeIn__fast">
+<div *ngIf="loading" class="row">
     <div class="col-12">
         <div class="alert alert-info text-center">
             <h4 class="alert-heading">Cargando</h4>
             <i class="fa fa-spin fa-refresh fa-2x"></i>
             <p class="mb-0">Por favor espere</p>
-            <h1 class="animate__animated animate__bounce">
-                An animated element
-            </h1>
         </div>
     </div>
 </div>
 
-<div class="row animated fadeIn fast" *ngIf="!loading">
+<div class="row" *ngIf="!loading">
     <div class="col-12">
         <div class="card">
             <div class="card-header">

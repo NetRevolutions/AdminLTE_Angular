@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
+import {AppService} from '@services/app.service';
 
 @Component({
     selector: 'app-recover-password',
@@ -19,7 +20,11 @@ export class RecoverPasswordComponent implements OnInit, OnDestroy {
     public recoverPasswordForm: UntypedFormGroup;
     public isAuthLoading = false;
 
-    constructor(private renderer: Renderer2, private toastr: ToastrService) {}
+    constructor(
+        private renderer: Renderer2,
+        private toastr: ToastrService,
+        private appService: AppService
+    ) {}
 
     ngOnInit(): void {
         this.renderer.addClass(

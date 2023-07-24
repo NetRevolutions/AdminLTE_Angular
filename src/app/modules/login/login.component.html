@@ -1,9 +1,9 @@
 <div class="card card-outline card-primary">
     <div class="card-header text-center">
-        <a [routerLink]="['/']" class="h1"><b>SICOTYC</b></a>
+        <a [routerLink]="['/']" class="h1"><b>Admin</b>LTE</a>
     </div>
     <div class="card-body">
-        <p class="login-box-msg">Login de usuario</p>
+        <p class="login-box-msg">Sign in to start your session</p>
 
         <form [formGroup]="loginForm" (ngSubmit)="loginByAuth()">
             <div class="input-group mb-3">
@@ -40,7 +40,7 @@
                             id="remember"
                             formControlName="remember"
                         />
-                        <label for="remember"> Recuerdame </label>
+                        <label for="remember"> Remember Me </label>
                     </div>
                 </div>
                 <!-- /.col -->
@@ -49,9 +49,9 @@
                         [type]="'submit'"
                         [block]="true"
                         [loading]="isAuthLoading"
-                        [disabled]="this.loginForm.pristine"
+                        [disabled]="isFacebookLoading || isGoogleLoading"
                     >
-                        Iniciar sesion
+                        Sign In
                     </pf-button>
                 </div>
                 <!-- /.col -->
@@ -82,11 +82,11 @@
         </div> -->
 
         <p class="mb-1">
-            <a [routerLink]="['/forgot-password']">Olvide mi contraseña</a>
+            <a [routerLink]="['/forgot-password']">I forgot my password</a>
         </p>
         <p class="mb-0">
             <a [routerLink]="['/register']" class="text-center">
-                Registrar un nuevo usuario
+                Register a new membership
             </a>
         </p>
     </div>

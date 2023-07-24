@@ -1,4 +1,5 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {AppState} from '@/store/state';
 import {UiState} from '@/store/ui/state';
@@ -16,6 +17,7 @@ import {enumLookupCodeGroup} from '@/utils/lookupCodeGroups.enum';
 import {DataHelper} from '@/utils/data-helper';
 
 // Services
+import {AppService} from '@services/app.service';
 import {CompanyService} from '@services/company.service';
 import {LookupService} from '@services/lookup.service';
 import {RoleService} from '@services/role.service';
@@ -41,6 +43,7 @@ export class MenuSidebarComponent implements OnInit {
     public imgTemp: any = '';
 
     constructor(
+        private appService: AppService,
         private userService: UserService,
         private roleService: RoleService,
         private companyService: CompanyService,

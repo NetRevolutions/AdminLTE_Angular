@@ -8,13 +8,18 @@ import {
     Router
 } from '@angular/router';
 import {Observable, catchError, of, tap} from 'rxjs';
+import {AppService} from '@services/app.service';
 import {UserService} from '@services/user.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
-    constructor(private router: Router, private userService: UserService) {}
+    constructor(
+        private router: Router,
+        private appService: AppService,
+        private userService: UserService
+    ) {}
 
     canActivate(
         next: ActivatedRouteSnapshot,
@@ -24,22 +29,11 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         | Promise<boolean | UrlTree>
         | boolean
         | UrlTree {
+        //return this.getProfile();
         return this.userService.validateToken().pipe(
-            tap({
-                next: (isAuthenticated) => {
-                    if (!isAuthenticated) {
-                        localStorage.removeItem('token');
-                        this.router.navigateByUrl('/login');
-                        return of(false);
-                    }
-                },
-                error: (error) => {
-                    console.log(error);
+            tap((isAuthenticated) => {
+                if (!isAuthenticated) {
                     this.router.navigateByUrl('/login');
-                    return of(error);
-                },
-                complete: () => {
-                    console.log('validateToken complete');
                 }
             }),
             catchError((error) => {
@@ -59,4 +53,17 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         | UrlTree {
         return this.canActivate(next, state);
     }
+
+    // async getProfile() {
+    //     if (this.appService.user) {
+    //         return true;
+    //     }
+
+    //     try {
+    //         await this.appService.getProfile();
+    //         return true;
+    //     } catch (error) {
+    //         return false;
+    //     }
+    // }
 }
