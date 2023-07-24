@@ -6,6 +6,8 @@
                     type="text"
                     class="form-control"
                     placeholder="Buscar usuario..."
+                    (keyup)="search(txtTerm.value)"
+                    #txtTerm
                 />
             </div>
         </div>
@@ -87,12 +89,17 @@
                         </tbody>
                     </table>
                 </div>
-                <button (click)="changePage(-5)" class="btn btn-secondary mr-1">
-                    Anteriores
-                </button>
-                <button (click)="changePage(5)" class="btn btn-secondary">
-                    Siguientes
-                </button>
+                <div *ngIf="txtTerm.value.length === 0">
+                    <button
+                        (click)="changePage(-5)"
+                        class="btn btn-secondary mr-1"
+                    >
+                        Anteriores
+                    </button>
+                    <button (click)="changePage(5)" class="btn btn-secondary">
+                        Siguientes
+                    </button>
+                </div>
             </div>
             <!-- /.card-body -->
             <!-- <div class="card-footer clearfix">

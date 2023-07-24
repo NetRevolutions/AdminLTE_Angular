@@ -8,6 +8,8 @@ import {User} from '@/models/user.model';
 // Services
 import {RoleService} from '@services/role.service';
 import {UserService} from '@services/user.service';
+import {SearchesService} from '@services/searches.service';
+import {enumModel} from '@/utils/models.enum';
 
 @Component({
     selector: 'app-users',
@@ -17,12 +19,14 @@ import {UserService} from '@services/user.service';
 export class UsersComponent implements OnInit {
     public totalUsers: number = 0;
     public users: User[] = [];
+    public usersTemp: User[] = [];
     public from: number = 0;
     public loading: boolean = true;
 
     constructor(
         private userService: UserService,
         private roleService: RoleService,
+        private searchesService: SearchesService,
         private toastr: ToastrService
     ) {}
 
@@ -31,6 +35,7 @@ export class UsersComponent implements OnInit {
     }
 
     loadUsers() {
+        // TODO: Destructurarlo en metodos asincronos para poder reutilizar las funciones
         this.loading = true;
         this.roleService.getRoles().subscribe({
             next: (rolesData: any) => {
@@ -53,6 +58,7 @@ export class UsersComponent implements OnInit {
                             // Transformamos los userRoles - End
                             this.totalUsers = usersData.total;
                             this.users = usersData.users;
+                            this.usersTemp = usersData.users;
 
                             this.loading = false;
                             //console.log(this.users);
@@ -85,5 +91,21 @@ export class UsersComponent implements OnInit {
         }
 
         this.loadUsers();
+    }
+
+    search(term: string) {
+        if (term.length === 0) {
+            return (this.users = this.usersTemp);
+        }
+
+        this.searchesService.search(enumModel.USER, term).subscribe({
+            next: (results) => {
+                this.users = results; // TODO: Mejorar la parte para traer los roles.
+            },
+            error: (err) => {
+                this.toastr.error('Se produjo un error al buscar datos');
+                console.error(err);
+            }
+        });
     }
 }
