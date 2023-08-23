@@ -59,12 +59,32 @@
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.userName }}</td>
                                 <!-- <td>ewtsff</td> -->
-                                <td>
-                                    <span
-                                        *ngFor="let role of user.roles"
-                                        class="right badge badge-primary mr-1"
-                                        >{{ role.roleName }}</span
+                                <td class="w-25">
+                                    <angular2-multiselect
+                                        [(ngModel)]="user.roles"
+                                        [data]="roles"
+                                        [settings]="dropdownSettings"
+                                        (onSelect)="asignRole(user)"
+                                        (onDeSelect)="asignRole(user)"
+                                        (onSelectAll)="onRoleSelectAll($event)"
+                                        (onDeSelectAll)="
+                                            onRoleDeSelectAll($event)
+                                        "
                                     >
+                                    </angular2-multiselect>
+
+                                    <!-- <span
+                                        *ngFor="let role of user.roles"
+                                        [ngClass]="[
+                                        role.roleName == 'Administrador' ? 'right badge badge-primary mr-1':'',
+                                        role.roleName == 'Coordinador' ? 'right badge badge-success mr-1':'',
+                                        role.roleName == 'Facturador' ? 'right badge badge-warning mr-1':'',
+                                        role.roleName == 'Chofer' ? 'right badge badge-secondary mr-1':'',
+                                        role.roleName == 'Transportista' ? 'right badge badge-secondary mr-1':'',
+                                        role.roleName == 'Otros' ? 'right badge badge-secondary mr-1':''
+                                        ]"
+                                        >{{ role.roleName }}</span
+                                    > -->
                                     <!-- <span class="badge badge-success mr-1">Coordinador</span> -->
                                 </td>
                                 <td class="text-nowrap text-center">
@@ -80,6 +100,7 @@
                                         data-toggle="tooltip"
                                         title="Borrar"
                                         data-placement="auto"
+                                        (click)="deleteUser(user)"
                                         ><i
                                             class="fa fa-close text-danger ml-1"
                                         ></i

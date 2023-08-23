@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from '@/app-routing.module';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {StoreModule} from '@ngrx/store';
 import {ToastrModule} from 'ngx-toastr';
 import {ProfabricComponentsModule} from '@profabric/angular-components';
@@ -15,6 +15,7 @@ import {uiReducer} from './store/ui/reducer';
 import {defineCustomElements} from '@profabric/web-components/loader';
 
 // Modules
+import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
 
 // Components
 import {AppComponent} from './app.component';
@@ -127,6 +128,8 @@ registerLocaleData(localeEn, 'en-EN');
         AppRoutingModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
+        AngularMultiSelectModule,
+        FormsModule,
         ToastrModule.forRoot({
             timeOut: 3000,
             positionClass: 'toast-top-right',

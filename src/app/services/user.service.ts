@@ -90,11 +90,11 @@ export class UserService {
     }
 
     updateUserProfile(formData: IUserProfileUpdate) {
-        return this.http.put(`${base_url}/users/${this.uid}`, formData, {
-            headers: {
-                'x-token': this.token
-            }
-        });
+        return this.http.put(
+            `${base_url}/users/${this.uid}`,
+            formData,
+            this.headers
+        );
     }
 
     login(formData: IUserLoginForm) {
@@ -146,6 +146,19 @@ export class UserService {
                     uid: resp.uid
                 };
             })
+        );
+    }
+
+    deleteUser(user: User) {
+        const url = `${base_url}/users/${user.uid}`;
+        return this.http.delete(url, this.headers);
+    }
+
+    saveUser(user: User) {
+        return this.http.put(
+            `${base_url}/users/${user.uid}`,
+            user,
+            this.headers
         );
     }
 }

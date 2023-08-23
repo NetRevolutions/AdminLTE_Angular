@@ -27,6 +27,8 @@ export class NonAuthGuard implements CanActivate, CanActivateChild {
         if (!localStorage.getItem('token')) {
             return true;
         }
+        // TODO: Improve this section
+        localStorage.removeItem('token'); // token is invalidad, must be remove
         this.router.navigate(['/']);
         return false;
     }
