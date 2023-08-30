@@ -68,6 +68,7 @@ import {PlacesComponent} from './pages/maintenances/places/places.component';
 import {FeesComponent} from './pages/maintenances/fees/fees.component';
 import {FeesCompanyComponent} from './pages/maintenances/fees-company/fees-company.component';
 import {TollsComponent} from './pages/maintenances/tolls/tolls.component';
+import {ModalImagenComponent} from './components/modal-imagen/modal-imagen.component';
 
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
@@ -119,7 +120,8 @@ registerLocaleData(localeEn, 'en-EN');
         PlacesComponent,
         FeesComponent,
         FeesCompanyComponent,
-        TollsComponent
+        TollsComponent,
+        ModalImagenComponent
     ],
     imports: [
         BrowserModule,

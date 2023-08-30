@@ -1,33 +1,38 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import {Subscription, delay, forkJoin} from 'rxjs';
 
 // Models
 import {User} from '@/models/user.model';
+import {Role} from '@/models/role.models';
 
 // Services
 import {UserService} from '@services/user.service';
 import {SearchesService} from '@services/searches.service';
-import {enumModel} from '@/utils/models.enum';
 import {RoleService} from '@services/role.service';
-import {forkJoin} from 'rxjs';
-import {Role} from '@/models/role.models';
+import {ModalImageService} from '@services/modal-image.service';
+
+// Enums
+import {enumModel} from '@/utils/models.enum';
 
 // Interfaces
 import {IUserProfileUpdate} from '@/interfaces/user-profile-update.interface';
+import {enumTypeImage} from '@/utils/type-image.enum';
 
 @Component({
     selector: 'app-users',
     templateUrl: './users.component.html',
     styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
     public totalUsers: number = 0;
     public users: User[] = [];
     public usersTemp: User[] = [];
     public from: number = 0;
     public loading: boolean = true;
     public roles: Role[];
+    public imgSubs: Subscription;
 
     dropdownSettings = {};
     selectedItems = [];
@@ -36,8 +41,13 @@ export class UsersComponent implements OnInit {
         private userService: UserService,
         private searchesService: SearchesService,
         private roleService: RoleService,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private modalImagenService: ModalImageService
     ) {}
+
+    ngOnDestroy(): void {
+        this.imgSubs.unsubscribe();
+    }
 
     ngOnInit(): void {
         // More information ==> http://cuppalabs.github.io/components/multiselectDropdown/
@@ -56,6 +66,10 @@ export class UsersComponent implements OnInit {
         };
 
         this.loadData();
+
+        this.imgSubs = this.modalImagenService.newImage
+            .pipe(delay(100))
+            .subscribe((img) => this.loadData());
     }
 
     loadData() {
@@ -159,17 +173,6 @@ export class UsersComponent implements OnInit {
         });
     }
 
-    // onItemRoleSelect(item: any, itemsSelected: any){
-    //     console.log('itemAdded',item);
-    //     console.log('currentItems', itemsSelected);
-
-    // };
-
-    // onItemRoleDeselect(item: any, itemsSelected: any) {
-    //     console.log('itemRemoved',item);
-    //     console.log('currentItems', itemsSelected);
-    // };
-
     onRoleSelectAll(items: any) {
         console.log(items);
     }
@@ -177,5 +180,13 @@ export class UsersComponent implements OnInit {
     onRoleDeSelectAll(items: any) {
         // console.log(items);
         this.toastr.warning('Debe de seleccionar al menos un rol');
+    }
+
+    openModal(user: User) {
+        this.modalImagenService.openModal(
+            enumTypeImage.USERS,
+            user.uid,
+            user.imagePath
+        );
     }
 }

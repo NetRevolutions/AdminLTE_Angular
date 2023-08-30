@@ -51,7 +51,8 @@
                                     <img
                                         [src]="user.imageUrl"
                                         alt="Avatar de Usuario"
-                                        class="avatar"
+                                        class="avatar cursor-pointer"
+                                        (click)="openModal(user)"
                                     />
                                 </td>
                                 <td>{{ user.firstName }}</td>

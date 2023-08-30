@@ -15,8 +15,9 @@
 @import '~admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
 @import '~admin-lte/dist/css/adminlte.min.css';
 @import '~angular2-multiselect-dropdown/themes/default.theme.css';
-
+// @import '~bootstrap/dist/css/bootstrap.min.css';
 @import 'ngx-toastr/toastr';
+@import '~assets/css/animate.css';
 
 body {
     width: 100vw;
@@ -57,8 +58,29 @@ body {
     width: 100px;
 }
 
+.w140 {
+    width: 140px;
+}
+
 .avatar {
-    // border: 1px solid grey;
     border-radius: 100%;
     width: 30px;
+}
+
+.oculto {
+    display: none;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.fondo-modal-imagen {
+    background-color: rgba(0, 0, 0, 0.4);
+    left: 0px;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 9999;
 }
